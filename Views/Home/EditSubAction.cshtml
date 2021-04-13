@@ -1,0 +1,16 @@
+﻿<center>
+    <h1>Редактирование подраздела</h1>
+    <form method="post" class="form-floating">
+        <input type="hidden" name="action" value="@ViewBag.action">
+        <div class="form-floating mb-3">
+            <input type="text" name="subAction" class="form-control" id="floatingInput" Value="@ViewBag.subAction" disabled>
+            <label for="floatingInput">Название раздела</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" name="desc" class="form-control" id="floatingInput" Value="@ViewBag.SubActionDesc">
+            <label for="floatingTextarea2">Ссылка</label>
+        </div>
+        <button style="width: 100%" type="submit" class="btn btn-danger">Сохранить</button>
+        <a href="/Home/DeleteSubAction?tab=@ViewBag.action&subAction=@ViewBag.subAction"><button style="width: 100%" type="button" class="btn btn-dark">Удалить</button></a>
+    </form>
+</center>

@@ -1,0 +1,71 @@
+﻿@using WebDstu.Database
+@using Newtonsoft.Json
+<center>
+    <h1>DSTU BOT => Admin Panel (24.03.21)</h1>
+    <p>Your IP: @(Html.ViewContext.HttpContext.Connection.RemoteIpAddress)</p>
+    <p>Bot created by Egor Kh. & Azamat A.</p>
+
+    <a href="/Home/UpdateDSTU"><button class="btn btn-primary" style="width: 70%" type="button">Сохранить изменения</button></a>
+    <a href="/Home/getUpdates"><button class="btn btn-primary" style="width: 70%" type="button">Обновить список</button></a>
+
+
+    <h3>Список разделов</h3>
+
+
+    <div>
+        <div class="d-grid gap-2">
+
+            @{
+
+
+                foreach (var key in Startup.saveds)
+                {
+                    <div style="margin-bottom: 30px; background-color: #f8f8ff; padding: 20px">
+                        @{
+                            DSTUSaved saved = key.Value;
+
+                            //args = JsonConvert.DeserializeObject<System.Dynamic.ExpandoObject>(saved.OptionsJson);
+                            <div class="container">
+                                <a href="Home/EditAction?action=@saved.Action&actionn=@saved.Action"><button type="button" style="width: 60%; margin-bottom: 10px" class="btn btn-outline-dark">@saved.Action</button></a>
+                                <a href="Home/Delete?id=@saved.Id"><button type="button" style="margin-bottom: 10px" class="btn btn-danger">Удалить</button></a>
+                            </div>
+                            <div class="container">
+                                <form action="https://@(Html.ViewContext.HttpContext.Request.Host)/Home/Movie" method="post" name="form">
+                                    <input type="hidden" name="action" value="@(saved.Action)">
+                                    <input type="text" name="id" class="form-control" id="floatingInput" style="width: 60%" Value="@saved.SortId">
+                                    <button type="submit" style="margin-bottom: 10px; width: 60%" class="btn btn-success">Применить</button>
+                                </form>
+                            </div>
+
+                            <p>Текст для пользователя:</p>
+                            <p>@saved.OptionsJson</p>
+
+                            <p>Подразделы:</p>
+
+                            Dictionary<string, string> subActions = new Dictionary<string, string>();
+
+                            if (saved.SubActions != "null")
+                            {
+                                subActions = JsonConvert.DeserializeObject<Dictionary<string, string>>(saved.SubActions);
+
+
+                                foreach (var item in subActions)
+                                {
+                                    <a href="/Home/EditSubAction?action=@(saved.Action)&actionn=@saved.Action&subAction=@item.Key"><button type="button" style="width: 50%; margin-bottom: 10px" class="btn btn-outline-primary">@item.Key</button></a>
+                                }
+                            }
+                        }
+                    
+
+                    <a href="/Home/AddSubAction?addToAction=@saved.Action"><button type="button" style="width: 50%; margin-bottom: 10px" class="btn btn-outline-danger">Добавить подраздел</button></a>
+                    </div>
+                }
+            }
+
+
+
+            <a href="/Home/AddAction"><button class="btn btn-primary" style="width: 70%" type="button">Добавить раздел</button></a>
+        </div>
+    </div>
+</center>
+

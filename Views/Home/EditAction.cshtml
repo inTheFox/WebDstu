@@ -1,0 +1,15 @@
+﻿<center>
+    <h1>Редактирование раздела</h1>
+    <form method="post" class="form-floating">
+        <input type="hidden" name="action" value="@ViewBag.Action">
+        <div class="form-floating mb-3">
+            <input type="text" name="newActionValue" class="form-control" id="floatingInput" Value="@ViewBag.Action">
+            <label for="floatingInput">Название раздела</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" name="desc" class="form-control" id="floatingInput" Value="@ViewBag.Desc">
+            <label for="floatingTextarea2">Ссылка</label>
+        </div>
+        <button style="width: 100%" type="submit" class="btn btn-danger">Сохранить</button>
+    </form>
+</center>
