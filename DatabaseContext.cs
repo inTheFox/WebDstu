@@ -15,7 +15,7 @@ namespace WebDstu.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql(
-                "server=37.140.192.97;user=u1333340_dstubot;password=Aq102030@;database=u1333340_dstu;",
+                "server=37.140.192.97;user=u1333340_dstubot;password=SECURITY;database=u1333340_dstu;",
                 new MariaDbServerVersion(new Version(10, 5, 8))
             );
         }
